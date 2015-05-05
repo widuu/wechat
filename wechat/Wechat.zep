@@ -161,11 +161,11 @@ class Wechat extends Wechatabstract{
 	}
 
 	/**
-     * 返回消息方法
-     * @param  string type
-     * @param  (array|string) type
-     * @return boolean
-     * @author widuu <admin@widuu.com>
+	 * 返回消息方法
+	 * @param  string type
+	 * @param  (array|string) type
+	 * @return boolean
+	 * @author widuu <admin@widuu.com>
 	 */
 
 	public function response(string! type=null,info){
@@ -270,9 +270,9 @@ class Wechat extends Wechatabstract{
 	}
 
 	/**
-     * 获取自定义菜单
-     * @author widuu <admin@widuu.com>
-     */
+	 * 获取自定义菜单
+	 * @author widuu <admin@widuu.com>
+	 */
 
 	public function Menu(string!type = null,string! token =null,array info = null){
 		var menu_url,result;
@@ -399,8 +399,8 @@ class Wechat extends Wechatabstract{
 	}
 
 	/**
-     * 获取新闻
-     * @author widuu <admin@widuu.com>
+	 * 获取新闻
+	 * @author widuu <admin@widuu.com>
 	 */
 
 	private function getNews(array! info){
@@ -416,7 +416,7 @@ class Wechat extends Wechatabstract{
 	}
 
 	/**
-     * 微信验证
+	 * 微信验证
 	 * @author widuu <admin@widuu.com>
 	 */
 
@@ -449,8 +449,8 @@ class Wechat extends Wechatabstract{
 	}
 
 	/**
-     * HTTP GET 方法
-     * @param  string url 
+	 * HTTP GET 方法
+	 * @param  string url 
 	 * @author widuu <admin@widuu.com>
 	 */
 

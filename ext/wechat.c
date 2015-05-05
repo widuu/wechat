@@ -126,7 +126,6 @@ static PHP_MINFO_FUNCTION(wechat)
 	php_info_print_table_header(2, PHP_WECHAT_NAME, "enabled");
 	php_info_print_table_row(2, "Author", PHP_WECHAT_AUTHOR);
 	php_info_print_table_row(2, "Version", PHP_WECHAT_VERSION);
-	php_info_print_table_row(2, "Powered by Zephir", "Version " PHP_WECHAT_ZEPVERSION);
 	php_info_print_table_end();
 
 

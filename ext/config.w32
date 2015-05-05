@@ -1,0 +1,16 @@
+ARG_ENABLE("wechat", "enable wechat", "no");
+
+if (PHP_WECHAT != "no") {
+  EXTENSION("wechat", "wechat.c", null, "-I"+configure_module_dirname);
+  ADD_SOURCES(configure_module_dirname + "/kernel", "main.c memory.c exception.c hash.c debug.c backtrace.c object.c array.c string.c fcall.c require.c file.c operators.c concat.c variables.c filter.c iterator.c exit.c time.c", "wechat");
+  ADD_SOURCES(configure_module_dirname + "/kernel/extended", "array.c fcall.c", "wechat");
+  /* PCRE is always included on WIN32 */
+  AC_DEFINE("ZEPHIR_USE_PHP_PCRE", 1, "Whether PHP pcre extension is present at compile time");
+  if (PHP_JSON != "no") {
+    ADD_EXTENSION_DEP("wechat", "json");
+    AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
+  }
+  
+  ADD_SOURCES(configure_module_dirname + "/wechat", "exception.zep.c wechat.zep.c wechatabstract.zep.c", "wechat");
+  ADD_FLAG("CFLAGS_WECHAT", "/D ZEPHIR_RELEASE");
+}

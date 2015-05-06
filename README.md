@@ -40,7 +40,7 @@
 
 >现在直编译了php5.6和php5.5版本，可以点击下边的地址下载。
 
-<table cellpadding="0" cellspacing="1" style="width: 90%; border: 0px;">
+<table cellpadding="0" cellspacing="1" style="width: 100%; border: 0px;">
  <tbody><tr>
   <td >
    <table cellpadding="2" cellspacing="1" style="width: 100%; border: 0px;">

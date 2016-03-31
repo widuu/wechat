@@ -73,13 +73,13 @@ PHP_METHOD(Wechat_Core_Config, set) {
 	ZEPHIR_SEPARATE_PARAM(key);
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "strval", NULL, 7, key);
+	ZEPHIR_CALL_FUNCTION(&_0, "strval", NULL, 1, key);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(key, _0);
 	if (Z_TYPE_P(val) == IS_ARRAY) {
 		ZEPHIR_INIT_VAR(_1$$3);
 		object_init_ex(_1$$3, wechat_core_config_ce);
-		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 8, val);
+		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 2, val);
 		zephir_check_call_status();
 		zephir_update_property_zval_zval(this_ptr, key, _1$$3 TSRMLS_CC);
 	} else {
@@ -100,7 +100,7 @@ PHP_METHOD(Wechat_Core_Config, get) {
 	ZEPHIR_SEPARATE_PARAM(key);
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "strval", NULL, 7, key);
+	ZEPHIR_CALL_FUNCTION(&_0, "strval", NULL, 1, key);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(key, _0);
 	if (zephir_isset_property_zval(this_ptr, key TSRMLS_CC)) {
@@ -123,7 +123,7 @@ PHP_METHOD(Wechat_Core_Config, isExists) {
 	ZEPHIR_SEPARATE_PARAM(key);
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "strval", NULL, 7, key);
+	ZEPHIR_CALL_FUNCTION(&_0, "strval", NULL, 1, key);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(key, _0);
 	RETURN_MM_BOOL(zephir_isset_property_zval(this_ptr, key TSRMLS_CC));

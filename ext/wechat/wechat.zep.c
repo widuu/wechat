@@ -95,11 +95,11 @@ PHP_METHOD(Wechat_Wechat, __construct) {
 
 PHP_METHOD(Wechat_Wechat, server) {
 
-	HashTable *_14;
-	HashPosition _13;
+	HashTable *_15$$4;
+	HashPosition _14$$4;
 	zend_bool _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_GET, *requestInfo = NULL, *requestObject = NULL, *_1, *_3, *result = NULL, *k = NULL, *v = NULL, *_4, **_15, *_2$$3, *encryptObject$$6 = NULL, *xmlObject$$6 = NULL, *_5$$6, *_6$$6, *_7$$6, *_8$$6, *_9$$6, *_10$$6, *_11$$6, *_12$$6;
+	zval *_GET, *requestInfo = NULL, *requestObject = NULL, *_1, *_3 = NULL, *_2$$3, *_4$$4, *result$$4 = NULL, *k$$4 = NULL, *v$$4 = NULL, *_5$$4, **_16$$4, *encryptObject$$7 = NULL, *xmlObject$$7 = NULL, *_6$$7, *_7$$7, *_8$$7, *_9$$7, *_10$$7, *_11$$7, *_12$$7, *_13$$7;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
@@ -113,59 +113,65 @@ PHP_METHOD(Wechat_Wechat, server) {
 		_2$$3 = zephir_fetch_nproperty_this(this_ptr, SL("_token"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "valid", NULL, 0, _2$$3);
 		zephir_check_call_status();
+		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_INIT_VAR(requestObject);
-	object_init_ex(requestObject, wechat_http_request_ce);
-	if (zephir_has_constructor(requestObject TSRMLS_CC)) {
-		ZEPHIR_CALL_METHOD(NULL, requestObject, "__construct", NULL, 0);
-		zephir_check_call_status();
-	}
-	ZEPHIR_CALL_METHOD(&requestInfo, requestObject, "getrequest", NULL, 1);
+	ZEPHIR_CALL_METHOD(&_3, this_ptr, "ispost", NULL, 32);
 	zephir_check_call_status();
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_aes"), PH_NOISY_CC);
-	if (ZEPHIR_IS_FALSE(_3)) {
-		if (zephir_array_isset_string(requestInfo, SS("Encrypt"))) {
-			if (1) {
-				zephir_update_property_this(this_ptr, SL("_aes"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
-			} else {
-				zephir_update_property_this(this_ptr, SL("_aes"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+	if (zephir_is_true(_3)) {
+		ZEPHIR_INIT_VAR(requestObject);
+		object_init_ex(requestObject, wechat_http_request_ce);
+		if (zephir_has_constructor(requestObject TSRMLS_CC)) {
+			ZEPHIR_CALL_METHOD(NULL, requestObject, "__construct", NULL, 0);
+			zephir_check_call_status();
+		}
+		ZEPHIR_CALL_METHOD(&requestInfo, requestObject, "getrequest", NULL, 33);
+		zephir_check_call_status();
+		_4$$4 = zephir_fetch_nproperty_this(this_ptr, SL("_aes"), PH_NOISY_CC);
+		if (ZEPHIR_IS_FALSE(_4$$4)) {
+			if (zephir_array_isset_string(requestInfo, SS("Encrypt"))) {
+				if (1) {
+					zephir_update_property_this(this_ptr, SL("_aes"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+				} else {
+					zephir_update_property_this(this_ptr, SL("_aes"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+				}
 			}
 		}
-	}
-	_4 = zephir_fetch_nproperty_this(this_ptr, SL("_aes"), PH_NOISY_CC);
-	if (ZEPHIR_IS_TRUE(_4)) {
-		ZEPHIR_INIT_VAR(encryptObject$$6);
-		object_init_ex(encryptObject$$6, wechat_core_encryption_ce);
-		_5$$6 = zephir_fetch_nproperty_this(this_ptr, SL("_token"), PH_NOISY_CC);
-		_6$$6 = zephir_fetch_nproperty_this(this_ptr, SL("_ase_key"), PH_NOISY_CC);
-		_7$$6 = zephir_fetch_nproperty_this(this_ptr, SL("_app_id"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, encryptObject$$6, "__construct", NULL, 2, _5$$6, _6$$6, _7$$6);
-		zephir_check_call_status();
-		zephir_array_fetch_string(&_8$$6, _GET, SL("msg_signature"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 97 TSRMLS_CC);
-		zephir_array_fetch_string(&_9$$6, _GET, SL("timestamp"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 97 TSRMLS_CC);
-		zephir_array_fetch_string(&_10$$6, _GET, SL("nonce"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 97 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&xmlObject$$6, encryptObject$$6, "decryptmsg", NULL, 3, _8$$6, _9$$6, _10$$6, requestInfo);
-		zephir_check_call_status();
-		zephir_array_fetch_string(&_11$$6, xmlObject$$6, SL("status"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 99 TSRMLS_CC);
-		if (!ZEPHIR_IS_LONG(_11$$6, 0)) {
-			RETURN_MM_BOOL(0);
+		_5$$4 = zephir_fetch_nproperty_this(this_ptr, SL("_aes"), PH_NOISY_CC);
+		if (ZEPHIR_IS_TRUE(_5$$4)) {
+			ZEPHIR_INIT_VAR(encryptObject$$7);
+			object_init_ex(encryptObject$$7, wechat_core_encryption_ce);
+			_6$$7 = zephir_fetch_nproperty_this(this_ptr, SL("_token"), PH_NOISY_CC);
+			_7$$7 = zephir_fetch_nproperty_this(this_ptr, SL("_ase_key"), PH_NOISY_CC);
+			_8$$7 = zephir_fetch_nproperty_this(this_ptr, SL("_app_id"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(NULL, encryptObject$$7, "__construct", NULL, 34, _6$$7, _7$$7, _8$$7);
+			zephir_check_call_status();
+			zephir_array_fetch_string(&_9$$7, _GET, SL("msg_signature"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 99 TSRMLS_CC);
+			zephir_array_fetch_string(&_10$$7, _GET, SL("timestamp"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 99 TSRMLS_CC);
+			zephir_array_fetch_string(&_11$$7, _GET, SL("nonce"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 99 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(&xmlObject$$7, encryptObject$$7, "decryptmsg", NULL, 35, _9$$7, _10$$7, _11$$7, requestInfo);
+			zephir_check_call_status();
+			zephir_array_fetch_string(&_12$$7, xmlObject$$7, SL("status"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 101 TSRMLS_CC);
+			if (!ZEPHIR_IS_LONG(_12$$7, 0)) {
+				RETURN_MM_BOOL(0);
+			}
+			zephir_array_fetch_string(&_13$$7, xmlObject$$7, SL("info"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 105 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(&result$$4, requestObject, "xmltoarray", NULL, 36, _13$$7);
+			zephir_check_call_status();
+		} else {
+			ZEPHIR_CPY_WRT(result$$4, requestInfo);
 		}
-		zephir_array_fetch_string(&_12$$6, xmlObject$$6, SL("info"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 103 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&result, requestObject, "xmltoarray", NULL, 4, _12$$6);
-		zephir_check_call_status();
-	} else {
-		ZEPHIR_CPY_WRT(result, requestInfo);
+		zephir_is_iterable(result$$4, &_15$$4, &_14$$4, 0, 0, "wechat/wechat.zep", 114);
+		for (
+		  ; zephir_hash_get_current_data_ex(_15$$4, (void**) &_16$$4, &_14$$4) == SUCCESS
+		  ; zephir_hash_move_forward_ex(_15$$4, &_14$$4)
+		) {
+			ZEPHIR_GET_HMKEY(k$$4, _15$$4, _14$$4);
+			ZEPHIR_GET_HVALUE(v$$4, _16$$4);
+			zephir_update_property_zval_zval(this_ptr, k$$4, v$$4 TSRMLS_CC);
+		}
+		RETURN_CCTOR(result$$4);
 	}
-	zephir_is_iterable(result, &_14, &_13, 0, 0, "wechat/wechat.zep", 112);
-	for (
-	  ; zephir_hash_get_current_data_ex(_14, (void**) &_15, &_13) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_14, &_13)
-	) {
-		ZEPHIR_GET_HMKEY(k, _14, _13);
-		ZEPHIR_GET_HVALUE(v, _15);
-		zephir_update_property_zval_zval(this_ptr, k, v TSRMLS_CC);
-	}
-	RETURN_CCTOR(result);
+	RETURN_MM_BOOL(0);
 
 }
 
@@ -195,13 +201,13 @@ PHP_METHOD(Wechat_Wechat, valid) {
 		zephir_read_property_this(&token, this_ptr, SL("_token"), PH_NOISY_CC);
 	}
 	ZEPHIR_OBS_VAR(signature);
-	zephir_array_fetch_string(&signature, _GET, SL("signature"), PH_NOISY, "wechat/wechat.zep", 128 TSRMLS_CC);
+	zephir_array_fetch_string(&signature, _GET, SL("signature"), PH_NOISY, "wechat/wechat.zep", 136 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(timestamp);
-	zephir_array_fetch_string(&timestamp, _GET, SL("timestamp"), PH_NOISY, "wechat/wechat.zep", 129 TSRMLS_CC);
+	zephir_array_fetch_string(&timestamp, _GET, SL("timestamp"), PH_NOISY, "wechat/wechat.zep", 137 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(nonce);
-	zephir_array_fetch_string(&nonce, _GET, SL("nonce"), PH_NOISY, "wechat/wechat.zep", 130 TSRMLS_CC);
+	zephir_array_fetch_string(&nonce, _GET, SL("nonce"), PH_NOISY, "wechat/wechat.zep", 138 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(echoStr);
-	zephir_array_fetch_string(&echoStr, _GET, SL("echostr"), PH_NOISY, "wechat/wechat.zep", 131 TSRMLS_CC);
+	zephir_array_fetch_string(&echoStr, _GET, SL("echostr"), PH_NOISY, "wechat/wechat.zep", 139 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(tmpArr);
 	zephir_create_array(tmpArr, 3, 0 TSRMLS_CC);
 	zephir_array_fast_append(tmpArr, token);
@@ -210,12 +216,12 @@ PHP_METHOD(Wechat_Wechat, valid) {
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_LONG(_0, 2);
 	ZEPHIR_MAKE_REF(tmpArr);
-	ZEPHIR_CALL_FUNCTION(NULL, "sort", NULL, 5, tmpArr, _0);
+	ZEPHIR_CALL_FUNCTION(NULL, "sort", NULL, 19, tmpArr, _0);
 	ZEPHIR_UNREF(tmpArr);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(tmpStr);
 	zephir_fast_join_str(tmpStr, SL(""), tmpArr TSRMLS_CC);
-	ZEPHIR_CALL_FUNCTION(&_1, "sha1", NULL, 6, tmpStr);
+	ZEPHIR_CALL_FUNCTION(&_1, "sha1", NULL, 20, tmpStr);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(tmpStr, _1);
 	if (ZEPHIR_IS_EQUAL(tmpStr, signature)) {
@@ -224,6 +230,27 @@ PHP_METHOD(Wechat_Wechat, valid) {
 		RETURN_MM_BOOL(0);
 	}
 	ZEPHIR_MM_RESTORE();
+
+}
+
+/**
+ * 判断请求方法
+ * @author widuu <admin@widuu.com>
+ */
+PHP_METHOD(Wechat_Wechat, isPost) {
+
+	zval *_SERVER, *_0, *_1;
+
+	ZEPHIR_MM_GROW();
+	zephir_get_global(&_SERVER, SS("_SERVER") TSRMLS_CC);
+
+	ZEPHIR_INIT_VAR(_0);
+	zephir_array_fetch_string(&_1, _SERVER, SL("REQUEST_METHOD"), PH_NOISY | PH_READONLY, "wechat/wechat.zep", 158 TSRMLS_CC);
+	zephir_fast_strtolower(_0, _1);
+	if (ZEPHIR_IS_STRING(_0, "post")) {
+		RETURN_MM_BOOL(1);
+	}
+	RETURN_MM_BOOL(0);
 
 }
 

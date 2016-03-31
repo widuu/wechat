@@ -85,15 +85,15 @@ PHP_METHOD(Wechat_Http_Request, xmlToArray) {
 
 
 	if (!(ZEPHIR_IS_EMPTY(xmlStr))) {
-		ZEPHIR_CALL_FUNCTION(NULL, "libxml_disable_entity_loader", NULL, 33, ZEPHIR_GLOBAL(global_true));
+		ZEPHIR_CALL_FUNCTION(NULL, "libxml_disable_entity_loader", NULL, 29, ZEPHIR_GLOBAL(global_true));
 		zephir_check_call_status();
 		ZEPHIR_SINIT_VAR(_0$$3);
 		ZVAL_STRING(&_0$$3, "SimpleXMLElement", 0);
 		ZEPHIR_SINIT_VAR(_1$$3);
 		ZVAL_LONG(&_1$$3, 16384);
-		ZEPHIR_CALL_FUNCTION(&xmlData, "simplexml_load_string", NULL, 34, xmlStr, &_0$$3, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&xmlData, "simplexml_load_string", NULL, 30, xmlStr, &_0$$3, &_1$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&requestInfo, "get_object_vars", NULL, 35, xmlData);
+		ZEPHIR_CALL_FUNCTION(&requestInfo, "get_object_vars", NULL, 31, xmlData);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_NVAR(requestInfo);

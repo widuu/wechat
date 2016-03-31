@@ -28,7 +28,6 @@
 
 
 zend_class_entry *wechat_wechatabstract_ce;
-zend_class_entry *wechat_wechat_ce;
 zend_class_entry *wechat_core_config_ce;
 zend_class_entry *wechat_core_encryption_ce;
 zend_class_entry *wechat_core_http_ce;
@@ -37,7 +36,7 @@ zend_class_entry *wechat_exception_ce;
 zend_class_entry *wechat_http_exception_ce;
 zend_class_entry *wechat_http_http_ce;
 zend_class_entry *wechat_http_request_ce;
-zend_class_entry *wechat_test_ce;
+zend_class_entry *wechat_wechat_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(wechat)
 
@@ -64,7 +63,6 @@ static PHP_MINIT_FUNCTION(wechat)
 #endif
 	REGISTER_INI_ENTRIES();
 	ZEPHIR_INIT(Wechat_WechatAbstract);
-	ZEPHIR_INIT(Wechat_Wechat);
 	ZEPHIR_INIT(Wechat_Core_Config);
 	ZEPHIR_INIT(Wechat_Core_Encryption);
 	ZEPHIR_INIT(Wechat_Core_Http);
@@ -73,7 +71,7 @@ static PHP_MINIT_FUNCTION(wechat)
 	ZEPHIR_INIT(Wechat_Http_Exception);
 	ZEPHIR_INIT(Wechat_Http_Http);
 	ZEPHIR_INIT(Wechat_Http_Request);
-	ZEPHIR_INIT(Wechat_Test);
+	ZEPHIR_INIT(Wechat_Wechat);
 
 #if PHP_VERSION_ID < 50500
 	setlocale(LC_ALL, old_lc_all);

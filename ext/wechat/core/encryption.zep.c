@@ -242,7 +242,7 @@ PHP_METHOD(Wechat_Core_Encryption, decryptMsg) {
 		RETURN_MM();
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_encoding_aes_key"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "getkey", NULL, 9, _1);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "getkey", NULL, 3, _1);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_EMPTY(timestamp)) {
 		ZEPHIR_INIT_NVAR(timestamp);
@@ -313,7 +313,7 @@ PHP_METHOD(Wechat_Core_Encryption, encryptMsg) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_encoding_aes_key"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "getkey", NULL, 9, _0);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "getkey", NULL, 3, _0);
 	zephir_check_call_status();
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_app_id"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&enArray, this_ptr, "encrypt", NULL, 0, replyMsg, _1);
@@ -382,7 +382,7 @@ PHP_METHOD(Wechat_Core_Encryption, encrypt) {
 		ZVAL_STRING(&_0$$3, "N", 0);
 		ZEPHIR_SINIT_VAR(_1$$3);
 		ZVAL_LONG(&_1$$3, zephir_fast_strlen_ev(text));
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "pack", NULL, 10, &_0$$3, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "pack", NULL, 4, &_0$$3, &_1$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_INIT_VAR(_3$$3);
 		ZEPHIR_CONCAT_VVVV(_3$$3, random$$3, _2$$3, text, appid);
@@ -391,7 +391,7 @@ PHP_METHOD(Wechat_Core_Encryption, encrypt) {
 		ZVAL_STRING(&_0$$3, "rijndael-128", 0);
 		ZEPHIR_SINIT_NVAR(_1$$3);
 		ZVAL_STRING(&_1$$3, "cbc", 0);
-		ZEPHIR_CALL_FUNCTION(&size$$3, "mcrypt_get_block_size", NULL, 11, &_0$$3, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&size$$3, "mcrypt_get_block_size", NULL, 5, &_0$$3, &_1$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_SINIT_NVAR(_0$$3);
 		ZVAL_STRING(&_0$$3, "rijndael-128", 0);
@@ -401,7 +401,7 @@ PHP_METHOD(Wechat_Core_Encryption, encrypt) {
 		ZVAL_STRING(&_4$$3, "cbc", 0);
 		ZEPHIR_SINIT_VAR(_5$$3);
 		ZVAL_STRING(&_5$$3, "", 0);
-		ZEPHIR_CALL_FUNCTION(&module$$3, "mcrypt_module_open", NULL, 12, &_0$$3, &_1$$3, &_4$$3, &_5$$3);
+		ZEPHIR_CALL_FUNCTION(&module$$3, "mcrypt_module_open", NULL, 6, &_0$$3, &_1$$3, &_4$$3, &_5$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		_6$$3 = zephir_fetch_nproperty_this(this_ptr, SL("_key"), PH_NOISY_CC);
 		ZEPHIR_SINIT_NVAR(_0$$3);
@@ -410,21 +410,21 @@ PHP_METHOD(Wechat_Core_Encryption, encrypt) {
 		ZVAL_LONG(&_1$$3, 16);
 		ZEPHIR_INIT_VAR(iv$$3);
 		zephir_substr(iv$$3, _6$$3, 0 , 16 , 0);
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "encode", NULL, 13, text);
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "encode", NULL, 7, text);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_CPY_WRT(text, _7$$3);
 		_8$$3 = zephir_fetch_nproperty_this(this_ptr, SL("_key"), PH_NOISY_CC);
-		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_init", NULL, 14, module$$3, _8$$3, iv$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_init", NULL, 8, module$$3, _8$$3, iv$$3);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_FUNCTION(&encrypted$$3, "mcrypt_generic", NULL, 15, module$$3, text);
+		ZEPHIR_CALL_FUNCTION(&encrypted$$3, "mcrypt_generic", NULL, 9, module$$3, text);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_deinit", NULL, 16, module$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_deinit", NULL, 10, module$$3);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_module_close", NULL, 17, module$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_module_close", NULL, 11, module$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 		add_assoc_long_ex(return_value, SS("status"), 0);
-		ZEPHIR_CALL_FUNCTION(&_7$$3, "base64_encode", NULL, 18, encrypted$$3);
+		ZEPHIR_CALL_FUNCTION(&_7$$3, "base64_encode", NULL, 12, encrypted$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		zephir_array_update_string(&return_value, SL("info"), &_7$$3, PH_COPY | PH_SEPARATE);
 		RETURN_MM();
@@ -475,7 +475,7 @@ PHP_METHOD(Wechat_Core_Encryption, decrypt) {
 
 	/* try_start_1: */
 
-		ZEPHIR_CALL_FUNCTION(&ciphertext_dec, "base64_decode", NULL, 19, encrypted);
+		ZEPHIR_CALL_FUNCTION(&ciphertext_dec, "base64_decode", NULL, 13, encrypted);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_SINIT_VAR(_0$$3);
 		ZVAL_STRING(&_0$$3, "rijndael-128", 0);
@@ -485,7 +485,7 @@ PHP_METHOD(Wechat_Core_Encryption, decrypt) {
 		ZVAL_STRING(&_2$$3, "cbc", 0);
 		ZEPHIR_SINIT_VAR(_3$$3);
 		ZVAL_STRING(&_3$$3, "", 0);
-		ZEPHIR_CALL_FUNCTION(&module, "mcrypt_module_open", NULL, 12, &_0$$3, &_1$$3, &_2$$3, &_3$$3);
+		ZEPHIR_CALL_FUNCTION(&module, "mcrypt_module_open", NULL, 6, &_0$$3, &_1$$3, &_2$$3, &_3$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		_4$$3 = zephir_fetch_nproperty_this(this_ptr, SL("_key"), PH_NOISY_CC);
 		ZEPHIR_SINIT_NVAR(_0$$3);
@@ -495,13 +495,13 @@ PHP_METHOD(Wechat_Core_Encryption, decrypt) {
 		ZEPHIR_INIT_VAR(iv);
 		zephir_substr(iv, _4$$3, 0 , 16 , 0);
 		_5$$3 = zephir_fetch_nproperty_this(this_ptr, SL("_key"), PH_NOISY_CC);
-		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_init", NULL, 14, module, _5$$3, iv);
+		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_init", NULL, 8, module, _5$$3, iv);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_FUNCTION(&decrypted, "mdecrypt_generic", NULL, 20, module, ciphertext_dec);
+		ZEPHIR_CALL_FUNCTION(&decrypted, "mdecrypt_generic", NULL, 14, module, ciphertext_dec);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_deinit", NULL, 16, module);
+		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_generic_deinit", NULL, 10, module);
 		zephir_check_call_status_or_jump(try_end_1);
-		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_module_close", NULL, 17, module);
+		ZEPHIR_CALL_FUNCTION(NULL, "mcrypt_module_close", NULL, 11, module);
 		zephir_check_call_status_or_jump(try_end_1);
 
 	try_end_1:
@@ -520,7 +520,7 @@ PHP_METHOD(Wechat_Core_Encryption, decrypt) {
 
 	/* try_start_2: */
 
-		ZEPHIR_CALL_METHOD(&result$$5, this_ptr, "decode", NULL, 21, decrypted);
+		ZEPHIR_CALL_METHOD(&result$$5, this_ptr, "decode", NULL, 15, decrypted);
 		zephir_check_call_status_or_jump(try_end_1);
 		if (zephir_fast_strlen_ev(result$$5) < 16) {
 			array_init(return_value);
@@ -540,7 +540,7 @@ PHP_METHOD(Wechat_Core_Encryption, decrypt) {
 		zephir_substr(_11$$5, content$$5, 0 , 4 , 0);
 		ZEPHIR_SINIT_VAR(_12$$5);
 		ZVAL_STRING(&_12$$5, "N", 0);
-		ZEPHIR_CALL_FUNCTION(&len_list$$5, "unpack", NULL, 22, &_12$$5, _11$$5);
+		ZEPHIR_CALL_FUNCTION(&len_list$$5, "unpack", NULL, 16, &_12$$5, _11$$5);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_OBS_VAR(xml_len$$5);
 		zephir_array_fetch_long(&xml_len$$5, len_list$$5, 1, PH_NOISY, "wechat/core/encryption.zep", 267 TSRMLS_CC);
@@ -818,7 +818,7 @@ PHP_METHOD(Wechat_Core_Encryption, getKey) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZEPHIR_CONCAT_VS(_0, k, "=");
-	ZEPHIR_CALL_FUNCTION(&_1, "base64_decode", NULL, 19, _0);
+	ZEPHIR_CALL_FUNCTION(&_1, "base64_decode", NULL, 13, _0);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_key"), _1 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -852,7 +852,7 @@ PHP_METHOD(Wechat_Core_Encryption, decode) {
 	ZVAL_LONG(&_0, -1);
 	ZEPHIR_INIT_VAR(_1);
 	zephir_substr(_1, text, -1 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
-	ZEPHIR_CALL_FUNCTION(&pad, "ord", NULL, 23, _1);
+	ZEPHIR_CALL_FUNCTION(&pad, "ord", NULL, 17, _1);
 	zephir_check_call_status();
 	_2 = ZEPHIR_LT_LONG(pad, 1);
 	if (!(_2)) {
@@ -905,7 +905,7 @@ PHP_METHOD(Wechat_Core_Encryption, encode) {
 		ZEPHIR_OBS_NVAR(amount_to_pad);
 		zephir_read_static_property_ce(&amount_to_pad, wechat_core_encryption_ce, SL("block_size") TSRMLS_CC);
 	}
-	ZEPHIR_CALL_FUNCTION(&pad_chr, "chr", NULL, 24, amount_to_pad);
+	ZEPHIR_CALL_FUNCTION(&pad_chr, "chr", NULL, 18, amount_to_pad);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(tmp);
 	ZVAL_STRING(tmp, "", 1);
@@ -976,14 +976,14 @@ PHP_METHOD(Wechat_Core_Encryption, getSha1) {
 		ZEPHIR_INIT_VAR(_0$$3);
 		ZVAL_LONG(_0$$3, 2);
 		ZEPHIR_MAKE_REF(sortArray$$3);
-		ZEPHIR_CALL_FUNCTION(NULL, "sort", NULL, 5, sortArray$$3, _0$$3);
+		ZEPHIR_CALL_FUNCTION(NULL, "sort", NULL, 19, sortArray$$3, _0$$3);
 		ZEPHIR_UNREF(sortArray$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		ZEPHIR_INIT_VAR(str$$3);
 		zephir_fast_join_str(str$$3, SL(""), sortArray$$3 TSRMLS_CC);
 		zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 		add_assoc_long_ex(return_value, SS("status"), 0);
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "sha1", NULL, 6, str$$3);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "sha1", NULL, 20, str$$3);
 		zephir_check_call_status_or_jump(try_end_1);
 		zephir_array_update_string(&return_value, SL("info"), &_1$$3, PH_COPY | PH_SEPARATE);
 		RETURN_MM();
@@ -1039,7 +1039,7 @@ PHP_METHOD(Wechat_Core_Encryption, generate) {
 
 	ZEPHIR_INIT_VAR(format);
 	ZVAL_STRING(format, "<xml>\n<Encrypt><![CDATA[%s]]></Encrypt>\n<MsgSignature><![CDATA[%s]]></MsgSignature>\n<TimeStamp>%s</TimeStamp>\n<Nonce><![CDATA[%s]]></Nonce>\n</xml>", 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("sprintf", NULL, 25, format, encrypt, signature, timestamp, nonce);
+	ZEPHIR_RETURN_CALL_FUNCTION("sprintf", NULL, 21, format, encrypt, signature, timestamp, nonce);
 	zephir_check_call_status();
 	RETURN_MM();
 

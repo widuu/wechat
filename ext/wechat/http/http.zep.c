@@ -141,7 +141,7 @@ PHP_METHOD(Wechat_Http_Http, request) {
 			_3$$5 = !(ZEPHIR_IS_EMPTY(info));
 		}
 		if (_3$$5) {
-			ZEPHIR_CALL_FUNCTION(&paramUrl, "http_build_query", NULL, 26, params);
+			ZEPHIR_CALL_FUNCTION(&paramUrl, "http_build_query", NULL, 22, params);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(_5$$6);
 			ZEPHIR_SINIT_VAR(_6$$6);
@@ -174,30 +174,30 @@ PHP_METHOD(Wechat_Http_Http, request) {
 			ZEPHIR_CPY_WRT(postData, params);
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(&curlHandle, "curl_init", NULL, 27);
+	ZEPHIR_CALL_FUNCTION(&curlHandle, "curl_init", NULL, 23);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_15);
 	ZVAL_LONG(&_15, 10002);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 28, curlHandle, &_15, url);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 24, curlHandle, &_15, url);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_15);
 	ZVAL_LONG(&_15, 19913);
 	ZEPHIR_SINIT_VAR(_17);
 	ZVAL_LONG(&_17, 1);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 28, curlHandle, &_15, &_17);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 24, curlHandle, &_15, &_17);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_15);
 	ZVAL_LONG(&_15, 64);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 28, curlHandle, &_15, ZEPHIR_GLOBAL(global_false));
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 24, curlHandle, &_15, ZEPHIR_GLOBAL(global_false));
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_15);
 	ZVAL_LONG(&_15, 81);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 28, curlHandle, &_15, ZEPHIR_GLOBAL(global_false));
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 24, curlHandle, &_15, ZEPHIR_GLOBAL(global_false));
 	zephir_check_call_status();
 	_18 = zephir_fetch_nproperty_this(this_ptr, SL("_timeout"), PH_NOISY_CC);
 	ZEPHIR_SINIT_NVAR(_15);
 	ZVAL_LONG(&_15, 13);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 28, curlHandle, &_15, _18);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 24, curlHandle, &_15, _18);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_20);
 	zephir_fast_strtolower(_20, type);
@@ -206,26 +206,26 @@ PHP_METHOD(Wechat_Http_Http, request) {
 		ZVAL_LONG(&_21$$11, 47);
 		ZEPHIR_SINIT_VAR(_22$$11);
 		ZVAL_LONG(&_22$$11, 1);
-		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 28, curlHandle, &_21$$11, &_22$$11);
+		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 24, curlHandle, &_21$$11, &_22$$11);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_NVAR(_21$$11);
 		ZVAL_LONG(&_21$$11, 10015);
-		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 28, curlHandle, &_21$$11, postData);
+		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_16, 24, curlHandle, &_21$$11, postData);
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_FUNCTION(&content, "curl_exec", NULL, 29, curlHandle);
+	ZEPHIR_CALL_FUNCTION(&content, "curl_exec", NULL, 25, curlHandle);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_FALSE_IDENTICAL(content)) {
-		ZEPHIR_CALL_FUNCTION(&_23$$12, "curl_error", NULL, 30, curlHandle);
+		ZEPHIR_CALL_FUNCTION(&_23$$12, "curl_error", NULL, 26, curlHandle);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_24$$12);
 		ZEPHIR_CONCAT_SV(_24$$12, "Curl error: ", _23$$12);
 		zend_print_zval(_24$$12, 0);
-		ZEPHIR_CALL_FUNCTION(NULL, "curl_close", &_25, 31, curlHandle);
+		ZEPHIR_CALL_FUNCTION(NULL, "curl_close", &_25, 27, curlHandle);
 		zephir_check_call_status();
 		RETURN_MM_BOOL(0);
 	}
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", &_25, 31, curlHandle);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", &_25, 27, curlHandle);
 	zephir_check_call_status();
 	RETURN_CCTOR(content);
 

@@ -9,15 +9,18 @@ if test "$PHP_WECHAT" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_WECHAT, 1, [Whether you have Wechat])
-	wechat_sources="wechat.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c wechat/wechatabstract.zep.c
+	wechat_sources="wechat.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c wechat/core/cache.zep.c
+	wechat/wechatabstract.zep.c
 	wechat/core/config.zep.c
 	wechat/core/encryption.zep.c
+	wechat/core/filecache.zep.c
 	wechat/core/http.zep.c
 	wechat/core/service.zep.c
 	wechat/exception.zep.c
 	wechat/http/exception.zep.c
 	wechat/http/http.zep.c
 	wechat/http/request.zep.c
+	wechat/js/sdk.zep.c
 	wechat/wechat.zep.c "
 	PHP_NEW_EXTENSION(wechat, $wechat_sources, $ext_shared,, )
 	PHP_SUBST(WECHAT_SHARED_LIBADD)

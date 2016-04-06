@@ -5,6 +5,7 @@ ZEPHIR_INIT_CLASS(Wechat_Wechat);
 
 PHP_METHOD(Wechat_Wechat, __construct);
 PHP_METHOD(Wechat_Wechat, server);
+PHP_METHOD(Wechat_Wechat, getSignPackage);
 PHP_METHOD(Wechat_Wechat, valid);
 PHP_METHOD(Wechat_Wechat, isPost);
 
@@ -20,6 +21,7 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(wechat_wechat_method_entry) {
 	PHP_ME(Wechat_Wechat, __construct, arginfo_wechat_wechat___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Wechat_Wechat, server, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Wechat_Wechat, getSignPackage, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Wechat_Wechat, valid, arginfo_wechat_wechat_valid, ZEND_ACC_PUBLIC)
 	PHP_ME(Wechat_Wechat, isPost, NULL, ZEND_ACC_PRIVATE)
 	PHP_FE_END

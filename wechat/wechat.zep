@@ -17,6 +17,7 @@
 
 namespace Wechat;
 
+use Wechat\Js\Sdk;
 use Wechat\Http\Request;
 use Wechat\Core\Encryption;
 
@@ -65,6 +66,11 @@ class Wechat extends WechatAbstract {
 
 	}
 
+
+	/**
+	 * 启动服务获取解析结果
+	 * @author widuu <admin@widuu.com>
+	 */
 
 	public function server()-> array | boolean {
 
@@ -118,6 +124,17 @@ class Wechat extends WechatAbstract {
 		return false;
 	}
 
+
+	/**
+	 * 微信js的签名算法
+	 * @author widuu <admin@widuu.com>
+	 */
+
+	public function getSignPackage(){
+		var sdkObject;
+		let sdkObject = new Sdk(this->_app_id,this->_app_secret);
+		return sdkObject->getSignPackage();
+	}
 
 
 	/**

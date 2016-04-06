@@ -11,8 +11,9 @@ if (PHP_WECHAT != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/wechat", "wechatabstract.zep.c exception.zep.c wechat.zep.c", "wechat");
-	ADD_SOURCES(configure_module_dirname + "/wechat/core", "config.zep.c encryption.zep.c http.zep.c service.zep.c", "wechat");
+  ADD_SOURCES(configure_module_dirname + "/wechat/core", "cache.zep.c config.zep.c encryption.zep.c filecache.zep.c http.zep.c service.zep.c", "wechat");
+	ADD_SOURCES(configure_module_dirname + "/wechat", "wechatabstract.zep.c exception.zep.c wechat.zep.c", "wechat");
 	ADD_SOURCES(configure_module_dirname + "/wechat/http", "exception.zep.c http.zep.c request.zep.c", "wechat");
+	ADD_SOURCES(configure_module_dirname + "/wechat/js", "sdk.zep.c", "wechat");
   ADD_FLAG("CFLAGS_WECHAT", "/D ZEPHIR_RELEASE");
 }

@@ -73,7 +73,7 @@ PHP_METHOD(Wechat_Core_Service, _getServices) {
 	if (_1) {
 		ZEPHIR_INIT_VAR(_3$$3);
 		object_init_ex(_3$$3, wechat_core_service_ce);
-		ZEPHIR_CALL_METHOD(NULL, _3$$3, "__construct", NULL, 28);
+		ZEPHIR_CALL_METHOD(NULL, _3$$3, "__construct", NULL, 36);
 		zephir_check_call_status();
 		zephir_update_static_property_ce(wechat_core_service_ce, SL("_instance"), &_3$$3 TSRMLS_CC);
 	}
